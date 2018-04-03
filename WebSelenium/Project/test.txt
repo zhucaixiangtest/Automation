@@ -1,0 +1,8 @@
+*** Settings ***
+Library           ../py/testWeb.py
+
+*** Test Cases ***
+testrun
+    ${driver}    opens    Chrome    https://www.aliyun.com
+    ${yu}    ${shi}    Case    ${driver}    aliyun.xls
+    should contain    ${shi}    ${yu}
