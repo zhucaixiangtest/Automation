@@ -1,4 +1,4 @@
-#coding:utf-8
+# coding:utf-8
 from BrowserClass import Browser_names
 from ReadExcelClass import ReadExcel,_get_excel_datas
 import os
@@ -10,15 +10,14 @@ def opens(browsers,website):
 
     if browsers and website:
 
-       test=Browser_names
+       test=Browser_names()
 
        driver=test._run_browser(browsers,website)
 
        return driver
 
     else:
-
-        print("请检查浏览器和网址填写是否正确...")
+       print("请检查浏览器和网址填写是否正确...")
 
 
 def Case(driver,case_name):
@@ -32,7 +31,12 @@ def Case(driver,case_name):
             _get_excel_datas()._Handle_data(driver,_read_case_path)
         except Exception as _log_error:
             driver.quit()
-            print(_log_error)
+            go_pass=("invalid syntax (<string>, line 1)")
+            _log_errors=str(_log_error)
+            if _log_errors==go_pass:
+                pass
+            else:
+                print(_log_error)
             print ('*******************此用例执行失败具体查看log.*********************************')
             yu_str='True'
             shi_str='False'
@@ -40,8 +44,15 @@ def Case(driver,case_name):
             print ('**********************用例执行完：', _read_case_path)
             print ('')
             return yu_str,shi_str
-        print ('**********************用例执行完：', _read_case_path)
-        yu_str = ('True')
-        shi_str = ('True')
-        return yu_str, shi_str
+        else:
+            print ('**********************用例执行完：', _read_case_path)
+            yu_str = ('True')
+            shi_str = ('True')
+            return yu_str, shi_str
+        finally:
+            pass
 
+br=webdriver.Chrome()
+br.get("http://www.aliyun.com")
+br.maximize_window()
+Case(br,"aliyun.xls")

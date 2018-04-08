@@ -1,10 +1,13 @@
 #coding:utf-8
-
-import pymysql
-import cx_Oracle
-import ConfigParser
-import os
-import StringManipulation
+try:
+    import pymysql
+    import cx_Oracle
+except Exception as install_error:
+    print install_error
+else:
+    import ConfigParser
+    import os
+    import StringManipulation
 
 
 
