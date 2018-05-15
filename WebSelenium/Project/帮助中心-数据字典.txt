@@ -1,0 +1,48 @@
+*** Settings ***
+Library           ../py/testWeb.py
+
+*** Test Cases ***
+终端品牌查询
+    ${driver}    opens    Chrome    http://192.168.1.176:3800/#/login
+    ${yu}    ${shi}    case    ${driver}    Jcx_Terminalbrandquery.xls
+    shouldContain    ${shi}    ${yu}
+
+下载终端品牌
+    ${driver}    opens    Chrome    http://192.168.1.176:3800/#/login
+    ${yu}    ${shi}    case    ${driver}    Jcx_Downloadterminalbrand.xls
+    shouldContain    ${shi}    ${yu}
+
+应答码查询成功
+    ${driver}    opens    Chrome    http://192.168.1.176:3800/#/login
+    ${yu}    ${shi}    case    ${driver}    Jcx_AnswerCodeQuerySuccess.xls
+    shouldContain    ${shi}    ${yu}
+
+下载应答码表
+    ${driver}    opens    Chrome    http://192.168.1.176:3800/#/login
+    ${yu}    ${shi}    case    ${driver}    Jcx_DownloadResponseCodeTable.xls
+    shouldContain    ${shi}    ${yu}
+
+下载MCC类目
+    ${driver}    opens    Chrome    http://192.168.1.176:3800/#/login
+    ${yu}    ${shi}    case    ${driver}    Jcx_DownloadTheMccClass.xls
+    shouldContain    ${shi}    ${yu}
+
+传统服务商--下载支付宝类目
+    ${driver}    opens    Chrome    http://192.168.1.176:3800/#/login
+    ${yu}    ${shi}    case    ${driver}    Jcx_TheTraditionalAlipayDownloadCategory.xls
+    shouldContain    ${shi}    ${yu}
+
+银行服务商--下载支付宝类目
+    ${driver}    opens    Chrome    http://192.168.1.176:3800/#/login
+    ${yu}    ${shi}    case    ${driver}    Jcx_DownloadAlipayBankCategory.xls
+    shouldContain    ${shi}    ${yu}
+
+下载微信类目
+    ${driver}    opens    Chrome    http://192.168.1.176:3800/#/login
+    ${yu}    ${shi}    case    ${driver}    Jcx_DownloadWeChatClass.xls
+    shouldContain    ${shi}    ${yu}
+
+下载百度钱包类目
+    ${driver}    opens    Chrome    http://192.168.1.176:3800/#/login
+    ${yu}    ${shi}    case    ${driver}    Jcx_DownloadTheBaiduWalletCategory.xls
+    shouldContain    ${shi}    ${yu}

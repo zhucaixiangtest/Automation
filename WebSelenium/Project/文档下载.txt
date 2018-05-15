@@ -1,0 +1,38 @@
+*** Settings ***
+Library           ../py/testWeb.py
+
+*** Test Cases ***
+按校验类别查询
+    ${driver}    opens    Chrome    http://192.168.1.176:3800/#/login
+    ${yu}    ${shi}    case    ${driver}    Ifiledownload_option.xls
+    should Contain    ${shi}    ${yu}
+
+文件上传
+    ${driver}    opens    Chrome    http://192.168.1.176:3800/#/login
+    ${yu}    ${shi}    case    ${driver}    Ifiledownload_upload.xls
+    should Contain    ${shi}    ${yu}
+
+删除上传文件
+    ${driver}    opens    Chrome    http://192.168.1.176:3800/#/login
+    ${yu}    ${shi}    case    ${driver}    Ifiledownload_delete.xls
+    should Contain    ${shi}    ${yu}
+
+修改上传文件
+    ${driver}    opens    Chrome    http://192.168.1.176:3800/#/login
+    ${yu}    ${shi}    case    ${driver}    Ifiledownload_update.xls
+    should Contain    ${shi}    ${yu}
+
+按材料名称查询
+    ${driver}    opens    Chrome    http://192.168.1.176:3800/#/login
+    ${yu}    ${shi}    case    ${driver}    Ifiledownload_search.xls
+    should Contain    ${shi}    ${yu}
+
+按上传时间查询
+    ${driver}    opens    Chrome    http://192.168.1.176:3800/#/login
+    ${yu}    ${shi}    case    ${driver}    Ifiledownload_time.xls
+    should Contain    ${shi}    ${yu}
+
+文件下载
+    ${driver}    opens    Chrome    http://192.168.1.176:3800/#/login
+    ${yu}    ${shi}    case    ${driver}    Ifiledownload_download.xls
+    should Contain    ${shi}    ${yu}

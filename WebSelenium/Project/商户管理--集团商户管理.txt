@@ -1,0 +1,13 @@
+*** Settings ***
+Library           ../py/testWeb.py
+
+*** Test Cases ***
+机构查询
+    ${driver}    Opens    Chrome    http://192.168.1.176:3800/#/login
+    ${yu}    ${shi}    case    ${driver}    Cgroup_merchant_merchanismquery.xlsx
+    should Contain    ${shi}    ${yu}
+
+代理查询
+    ${driver}    Opens    Chrome    http://192.168.1.176:3800/#/login
+    ${yu}    ${shi}    case    ${driver}    Cgroup_merchant_agentquery.xlsx
+    should Contain    ${shi}    ${yu}

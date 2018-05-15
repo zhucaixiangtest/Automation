@@ -1,0 +1,177 @@
+*** Settings ***
+Library           ../py/test.py
+
+*** Test Cases ***
+所有商户--输入商户号查询
+    ${driver}    opens    Chrome    http://192.168.1.176:3800/#/login
+    ${yu}    ${shi}    case    ${driver}    Ccx_SerchMerchant.xls
+    should Contain    ${shi}    ${yu}
+
+所有商户--集团商户查询
+    ${driver}    opens    Chrome    http://192.168.1.176:3800/#/login
+    ${yu}    ${shi}    case    ${driver}    Ccx_SerchGroup.xls
+    should Contain    ${shi}    ${yu}
+
+审核中--集团商户查询
+    ${driver}    opens    Chrome    http://192.168.1.176:3800/#/login
+    ${yu}    ${shi}    case    ${driver}    Ccx_shenghejituan.xls
+    should Contain    ${shi}    ${yu}
+
+审核中--商户查询
+    ${driver}    opens    Chrome    http://192.168.1.176:3800/#/login
+    ${yu}    ${shi}    case    ${driver}    Ccx_shengheshanghu.xls
+    should Contain    ${shi}    ${yu}
+
+退回--商户查询
+    ${driver}    opens    Chrome    http://192.168.1.176:3800/#/login
+    ${yu}    ${shi}    case    ${driver}    Ccx_tuihuishanghu.xls
+    should Contain    ${shi}    ${yu}
+
+退回--集团商户查询
+    ${driver}    opens    Chrome    http://192.168.1.176:3800/#/login
+    ${yu}    ${shi}    case    ${driver}    Ccx_tuihuijituanshanghu.xls
+    should Contain    ${shi}    ${yu}
+
+所有商户--详情各页面跳转成功
+    ${driver}    opens    Chrome    http://192.168.1.176:3800/#/login
+    ${yu}    ${shi}    case    ${driver}    Ccx_allxiangqing.xls
+    should Contain    ${shi}    ${yu}
+
+审核--详情各页面跳转成功
+    ${driver}    opens    Chrome    http://192.168.1.176:3800/#/login
+    ${yu}    ${shi}    case    ${driver}    Ccx_shenghexiangqing.xls
+    should Contain    ${shi}    ${yu}
+
+退回--跳转详情成功
+    ${driver}    opens    Chrome    http://192.168.1.176:3800/#/login
+    ${yu}    ${shi}    case    ${driver}    Ccx_tuihuixiangqing.xls
+    should Contain    ${shi}    ${yu}
+
+所有商户--查询未开通的商户
+    ${driver}    opens    Chrome    http://192.168.1.176:3800/#/login
+    ${yu}    ${shi}    case    ${driver}    Ccx_allweikaitong.xls
+    should Contain    ${shi}    ${yu}
+
+审核--可以打开一审界面
+    ${driver}    opens    Chrome    http://192.168.1.176:3800/#/login
+    ${yu}    ${shi}    case    ${driver}    Ccx_shengheyi.xls
+    should Contain    ${shi}    ${yu}
+
+审核--可以打开二审界面
+    ${driver}    opens    Chrome    http://192.168.1.176:3800/#/login
+    ${yu}    ${shi}    case    ${driver}    Ccx_shengheer.xls
+    should Contain    ${shi}    ${yu}
+
+审核--可以打开三审界面
+    ${driver}    opens    Chrome    http://192.168.1.176:3800/#/login
+    ${yu}    ${shi}    case    ${driver}    Ccx_shenghesan.xls
+    should Contain    ${shi}    ${yu}
+
+审核--可以打开四审界面
+    ${driver}    opens    Chrome    http://192.168.1.176:3800/#/login
+    ${yu}    ${shi}    case    ${driver}    Ccx_shenghesi.xls
+    should Contain    ${shi}    ${yu}
+
+审核--可以打开五审界面
+    ${driver}    opens    Chrome    http://192.168.1.176:3800/#/login
+    ${yu}    ${shi}    case    ${driver}    Ccx_shenghewu.xls
+    should Contain    ${shi}    ${yu}
+
+审核-- 一审--商户查询
+    ${driver}    opens    Chrome    http://192.168.1.176:3800/#/login
+    ${yu}    ${shi}    case    ${driver}    Ccx_shengheyishanghuchaxun.xls
+    should Contain    ${shi}    ${yu}
+
+审核-- 一审--审批事由-新增商户
+    ${driver}    opens    Chrome    http://192.168.1.176:3800/#/login
+    ${yu}    ${shi}    case    ${driver}    Ccx_shenghesyshanghu.xls
+    should Contain    ${shi}    ${yu}
+
+审核-- 一审--审批事由-变更商户
+    ${driver}    opens    Chrome    http://192.168.1.176:3800/#/login
+    ${yu}    ${shi}    case    ${driver}    Ccx_shenghebgshanghu.xls
+    should Contain    ${shi}    ${yu}
+
+审核-- 一审--业务类型-扫码-机构服务-查询
+    ${driver}    opens    Chrome    http://192.168.1.176:3800/#/login
+    ${yu}    ${shi}    case    ${driver}    Ccx_shengheysywjg.xls
+    should Contain    ${shi}    ${yu}
+
+审核-- 一审--业务类型-扫码-银行服务商-查询
+    ${driver}    opens    Chrome    http://192.168.1.176:3800/#/login
+    ${yu}    ${shi}    case    ${driver}    Ccx_shengheysywyh.xls
+    should Contain    ${shi}    ${yu}
+
+审核-- 一审--业务类型-扫码-讯联服务商-查询
+    ${driver}    opens    Chrome    http://192.168.1.176:3800/#/login
+    ${yu}    ${shi}    case    ${driver}    Ccx_shengheysywxl.xls
+    should Contain    ${shi}    ${yu}
+
+所有商户--正常状态-查询
+    ${driver}    opens    Chrome    http://192.168.1.176:3800/#/login
+    ${yu}    ${shi}    case    ${driver}    Ccx_allzhengchang.xls
+    should Contain    ${shi}    ${yu}
+
+所有商户--锁定状态-查询
+    ${driver}    opens    Chrome    http://192.168.1.176:3800/#/login
+    ${yu}    ${shi}    case    ${driver}    Ccx_allsuoding.xls
+    should Contain    ${shi}    ${yu}
+
+所有商户--处理中状态-查询
+    ${driver}    opens    Chrome    http://192.168.1.176:3800/#/login
+    ${yu}    ${shi}    case    ${driver}    Ccx_allchulizhong.xls
+    should Contain    ${shi}    ${yu}
+
+所有商户--商户和集团商户组合查询(讯联登录)
+    ${driver}    opens    Chrome    http://192.168.1.176:3800/#/login
+    ${yu}    ${shi}    case    ${driver}    Ccx_allshjtsh.xls
+    should Contain    ${shi}    ${yu}
+
+所有商户--商户和正常状态组合查询(讯联登录)
+    ${driver}    opens    Chrome    http://192.168.1.176:3800/#/login
+    ${yu}    ${shi}    case    ${driver}    Ccx_allshzt.xls
+    should Contain    ${shi}    ${yu}
+
+所有商户--商户和处理中状态组合查询(讯联登录)
+    ${driver}    opens    Chrome    http://192.168.1.176:3800/#/login
+    ${yu}    ${shi}    case    ${driver}    Ccx_allshztclz.xls
+    should Contain    ${shi}    ${yu}
+
+所有商户--商户和锁定状态组合查询(讯联登录)
+    ${driver}    opens    Chrome    http://192.168.1.176:3800/#/login
+    ${yu}    ${shi}    case    ${driver}    Ccx_allshztsd.xls
+    should Contain    ${shi}    ${yu}
+
+所有商户--集团商户和正常状态组合查询(讯联登录)
+    ${driver}    opens    Chrome    http://192.168.1.176:3800/#/login
+    ${yu}    ${shi}    case    ${driver}    Ccx_alljtshzczt.xls
+    should Contain    ${shi}    ${yu}
+
+所有商户--集团商户和处理中状态组合查询(讯联登录)
+    ${driver}    opens    Chrome    http://192.168.1.176:3800/#/login
+    ${yu}    ${shi}    case    ${driver}    Ccx_alljtshclzzt.xls
+    should Contain    ${shi}    ${yu}
+
+审核中--商户和集团商户组合查询
+    ${driver}    opens    Chrome    http://192.168.1.176:3800/#/login
+    ${yu}    ${shi}    case    ${driver}    Ccx_shengheshanghujituan.xls
+    should Contain    ${shi}    ${yu}
+
+退回--商户查询和集团商户组合筛选
+    ${driver}    opens    Chrome    http://192.168.1.176:3800/#/login
+    ${yu}    ${shi}    case    ${driver}    Ccx_tuihuishanghujituan.xls
+    should Contain    ${shi}    ${yu}
+
+审核--一审--新增事由和商户号组合查询
+    ${driver}    opens    Chrome    http://192.168.1.176:3800/#/login
+    ${yu}    ${shi}    case    ${driver}    Ccx_shengheyishxz.xls
+    should Contain    ${shi}    ${yu}
+
+审核--一审--变更事由和商户号组合查询
+    ${driver}    opens    Chrome    http://192.168.1.176:3800/#/login
+    ${yu}    ${shi}    case    ${driver}    Ccx_shengheyishbg.xls
+    should Contain    ${shi}    ${yu}
+
+退回--清理
+    ${driver}    opens    Chrome    http://192.168.1.176:3800/#/login
+    ${yu}    ${shi}    case    ${driver}    Ccx_tuihuiqingli.xls

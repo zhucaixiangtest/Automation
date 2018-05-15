@@ -1,0 +1,43 @@
+*** Settings ***
+Library           ../py/testWeb.py
+
+*** Test Cases ***
+用户管理-查询
+    ${driver}    Opens    Chrome    http://192.168.1.176:3800/#/login
+    ${yu}    ${shi}    case    ${driver}    Amerchant.xlsx
+    should Contain    ${shi}    ${yu}
+
+APP用户
+    ${driver}    Opens    Chrome    http://192.168.1.176:3800/#/login
+    ${yu}    ${shi}    case    ${driver}    Aapp_user.xlsx
+    should Contain    ${shi}    ${yu}
+
+角色管理-添加讯联-查询-删除
+    ${driver}    Opens    Chrome    http://192.168.1.176:3800/#/login
+    ${yu}    ${shi}    case    ${driver}    Arole_management1.xlsx
+    should Contain    ${shi}    ${yu}
+
+用户管理-类型-状态查询
+    ${driver}    Opens    Chrome    http://192.168.1.176:3800/#/login
+    ${yu}    ${shi}    case    ${driver}    Amerchant_query.xlsx
+    should Contain    ${shi}    ${yu}
+
+用户管理添加讯联用户
+    ${driver}    opens    Chrome    http://192.168.1.176:3800/#/login
+    ${yu}    ${shi}    case    ${driver}    Aadd_merchant_xunlian.xlsx
+    should Contain    ${shi}    ${yu}
+
+用户管理添加机构
+    ${driver}    opens    Chrome    http://192.168.1.176:3800/#/login
+    ${yu}    ${shi}    case    ${driver}    Aadd_merchant_mechanism.xlsx
+    should Contain    ${shi}    ${yu}
+
+角色管理-添加机构-查询-删除
+    ${driver}    Opens    Chrome    http://192.168.1.176:3800/#/login
+    ${yu}    ${shi}    case    ${driver}    Arole_management2.xlsx
+    should Contain    ${shi}    ${yu}
+
+角色管理-添加集团商户-查询-删除
+    ${driver}    Opens    Chrome    http://192.168.1.176:3800/#/login
+    ${yu}    ${shi}    case    ${driver}    Arole_management7.xlsx
+    should Contain    ${shi}    ${yu}
