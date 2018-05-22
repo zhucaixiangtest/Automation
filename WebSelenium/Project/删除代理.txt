@@ -1,8 +1,0 @@
-*** Settings ***
-Library           ../py/testWeb.py
-
-*** Test Cases ***
-删除代理
-    ${driver}    opens    Chrome    http://192.168.1.176:3800/#/login
-    ${yu}    ${shi}    case    ${driver}    Adelete_agent.xls
-    should Contain    ${shi}    ${yu}
