@@ -1,6 +1,6 @@
 # coding:utf-8
 from BrowserClass import Browser_names
-from ReadExcelClass import ReadExcel,_get_excel_datas
+
 import os
 from KeyWord import Basics_key
 from Callkey import Judge_use_case
@@ -53,14 +53,14 @@ def  _case_path(case_name):
         return _read_case_path
 
 
-
+ActualResults='False'
+ExpectedResults='True'
 
 def Case(driver,case_name):
 
     try:
             _read_case_path= _case_path(case_name)
-            ActualResults='True'
-            ExpectedResults='False'
+
 
             if case_name:
                 print ('**********************正在执行用例：',_read_case_path)
@@ -80,8 +80,8 @@ def Case(driver,case_name):
 
                     output = list_exc[4]
                     _case_run=Judge_use_case()
-                    shiji=_case_run._case_selenium(driver,Operation_method,Positioning_mode,Location_element,Input_content,output)
-                    if shiji == 'False':
+                    get_ActualResults=_case_run._case_selenium(driver,Operation_method,Positioning_mode,Location_element,Input_content,output)
+                    if get_ActualResults == 'False':
                         print("****************************************用例执行完毕",_read_case_path)
                         return ActualResults,ExpectedResults
 
@@ -95,21 +95,10 @@ def Case(driver,case_name):
         print('')
         _read_case_path= _case_path(case_name)
         print("****************************************用例执行完毕",_read_case_path)
+        return ActualResults, ExpectedResults
 
     else:
         pass
 
     finally:
         pass
-
-
-
-
-driver=webdriver.Chrome()
-driver.maximize_window()
-driver.get('http://192.168.1.176:3800')
-Case(driver,'Ccx_SerchMerchant.xls')
-
-
-
-

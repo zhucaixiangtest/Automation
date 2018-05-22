@@ -22,6 +22,8 @@ class Browser_names():
 
         self.FireFoxs='FireFox'
 
+        self.PhantomJS='PhantomJS'
+
         self.home_http='http'
 
 
@@ -33,7 +35,7 @@ class Browser_names():
                 options=webdriver.ChromeOptions()
                 path=os.path.abspath("..")#表示当前所处的文件夹上一级文件夹的绝对路径
                 filepath=path+"\\PullFile"
-                print(filepath)
+
                 prefs={'profile.default_content_settings.popups':0,'download.default_directory':filepath}
                 options.add_experimental_option('prefs',prefs)
                 if website != '':
@@ -45,6 +47,13 @@ class Browser_names():
             # 调用火狐浏览器
             elif browsers == self.FireFoxs and self.home_http in website:
                 br = webdriver.Firefox()
+                br.maximize_window()
+                br.get(website)
+                return br
+
+            # PhantomJS无界面开进程运行的浏览器，一般服务器切换到这个浏览器
+            elif browsers == self.PhantomJS and self.home_http in website:
+                br = webdriver.PhantomJS()
                 br.maximize_window()
                 br.get(website)
                 return br
