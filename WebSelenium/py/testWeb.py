@@ -8,6 +8,17 @@ from selenium import webdriver
 import time
 import xlrd
 
+
+#description      :ui自动化脚本,robotframework参数化
+#author         :朱财翔
+#date          :2018.6.5
+#version        :2.0
+#email          :zcx@zcx-t.top
+#python_version     :2.7.8
+#==============================================================================
+
+
+
 def opens(browsers,website):
 
     if browsers and website:
