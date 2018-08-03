@@ -1,8 +1,0 @@
-*** Settings ***
-Library           ../py/testWeb.py
-
-*** Test Cases ***
-testcase
-    ${driver}    opens    Chrome    http://www.baidu.com
-    ${yu}    ${shi}    case    ${driver}    serch.xls
-    should Contain    ${shi}    ${yu}
