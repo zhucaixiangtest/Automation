@@ -102,3 +102,24 @@ def save_img(driver):
     error_img = (_save_img_path+now_time+".png").replace('\\', '/')
     driver.save_screenshot(error_img)
     return error_img
+
+
+def write_log_txt(error_log):
+    now_time = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    str_time = str(now_time)
+    touch_txt = str_time[0:10]
+    try:
+        write_text = open('../error_log/log/' + touch_txt + '.txt', 'a')
+        write_text.write(str_time + ':' + ' ' * 5 + error_log + '\n' + "" + '\n')
+    except IOError:
+        print("写入log错误,无此目录")
+
+    else:
+        write_text.close()
+
+    finally:
+        pass
+
+
+
+

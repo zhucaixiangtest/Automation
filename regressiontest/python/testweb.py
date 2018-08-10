@@ -90,9 +90,9 @@ def case(driver, case_name):
         print("具体失败原因:" + error_log)
         im_save = string_manipulation
         im_save.save_img(driver)
-        time.sleep(2)
-        print("已截图到ErrorIMG文件夹")
-
+        time.sleep(1)
+        im_save.write_log_txt(error_log)
+        print("已截图并写入日志到error_log文件夹")
         driver.quit()
         print("**************************用例执行失败--具体查看日志抛异常")
         print('')
