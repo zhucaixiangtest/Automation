@@ -143,7 +143,7 @@ class UnderKey(BasicsKey):
         time.sleep(2)
         if location_element == u'确认' and input_content != '':
             text = str(input_content)
-            dialog_box.send_keys(input_content)
+            dialog_box.send_keys(text)
             time.sleep(2)
             dialog_box.accept()
             time.sleep(2)
@@ -223,45 +223,87 @@ class UnderKey(BasicsKey):
         else:
             pass
 
+    def false_be_true(self, driver, input_content, value, output):
+
+        value = value.encode("utf-8")
+        value = str(value)
+        test = string_manipulation
+        input_content = test.filter_value(input_content)
+
+        if isinstance(input_content, int):
+            input_content = str(input_content)
+            input_content = input_content + 'X'
+            value = value + 'X'
+
+        if isinstance(input_content, float):
+            input_content = str(input_content)
+            input_content = input_content + 'X'
+            value = value + 'X'
+
+        text = input_content.encode("utf-8")
+        text = str(text)
+        if value == text:
+            print(output, "-----TRUE")
+            print ('预期结果:' + text)
+            print ('实际结果:' + value)
+            return "True"
+        else:
+            print '--------------------------------------'
+            print ('预期结果:' + text)
+            print ('实际结果:' + value)
+            print('')
+            print ('实际结果和预期不匹配')
+            print '--------------------------------------'
+            actual_results = 'False'
+            driver.quit()
+            return actual_results
+
     # 元素text断言,暂时只要xpath
     def _find_value_key(self, driver, positioning_mode, location_element, input_content, output):
 
         if positioning_mode == self.location_xpath:
             value = driver.find_element_by_xpath(location_element).text
-            value = value.encode("utf-8")
-            value = str(value)
-            test = string_manipulation
-            input_content = test.filter_value(input_content)
+            assertion_results = self.false_be_true(driver, input_content, value, output)
+            return assertion_results
 
-            if isinstance(input_content, int):
-                input_content = str(input_content)
-                input_content = input_content + 'X'
-                value = value + 'X'
+        elif positioning_mode == self.location_id:
+            value = driver.find_element_by_id(location_element).text
+            assertion_results = self.false_be_true(driver, input_content, value, output)
+            return assertion_results
+        elif positioning_mode == self.location_name:
+            value = driver.find_element_by_name(location_element).text
+            assertion_results = self.false_be_true(driver, input_content, value, output)
+            return assertion_results
 
-            if isinstance(input_content, float):
-                input_content = str(input_content)
-                input_content = input_content + 'X'
-                value = value + 'X'
+        elif positioning_mode == self.location_css:
+            value = driver.find_element_by_css_selector(location_element).text
+            assertion_results = self.false_be_true(driver, input_content, value, output)
+            return assertion_results
 
-            text = input_content.encode("utf-8")
-            text = str(text)
-            if value == text:
-                print(output, "-----TRUE")
-                print ('预期结果:' + text)
-                print ('实际结果:' + value)
-                return "True"
-            else:
-                print '--------------------------------------'
-                print ('预期结果:'+text)
-                print ('实际结果:'+value)
-                print('')
-                print ('实际结果和预期不匹配')
-                print '--------------------------------------'
-                driver.quit()
-                actual_results = 'False'
-                return actual_results
+        elif positioning_mode == self.location_classname:
+            value = driver.find_element_by_class_name()(location_element).text
+            assertion_results = self.false_be_true(driver, input_content, value, output)
+            return assertion_results
+
+        elif positioning_mode == self.attribute_id:
+            attribute_value = driver.find_element_by_id(location_element)
+            value = attribute_value.get_attribute('value')
+            assertion_results = self.false_be_true(driver, input_content, value, output)
+            return assertion_results
+
+        elif positioning_mode == self.attribute_name:
+            attribute_value = driver.find_element_by_name(location_element)
+            value = attribute_value.get_attribute('value')
+            assertion_results = self.false_be_true(driver, input_content, value, output)
+            return assertion_results
+
+        elif positioning_mode == self.attribute_xpath:
+            attribute_value = driver.find_element_by_xpath(location_element)
+            value = attribute_value.get_attribute('value')
+            assertion_results = self.false_be_true(driver, input_content, value, output)
+            return assertion_results
         else:
-            print("find目前只用xpath定位方式")
+            pass
 
     # 回车键操作
     def _enter_element_key(self, driver, positioning_mode, location_element):
@@ -357,6 +399,138 @@ class UnderKey(BasicsKey):
         input_contents = get_url+input_content
         return input_contents
 
+    def find_str(self, driver, positioning_mode, location_element):
+        def false_str_true(value):
+            if value:
+                print('存在值')
+                print(value)
+                return 'True'
+            else:
+                return 'False'
+
+        if positioning_mode == self.location_id:
+            get_value = driver.find_element_by_id(location_element).text
+            assertion_results = false_str_true(get_value)
+            return assertion_results
+
+        elif positioning_mode == self.location_name:
+            get_value = driver.find_element_by_name(location_element).text
+            assertion_results = false_str_true(get_value)
+            return assertion_results
+
+        elif positioning_mode == self.location_xpath:
+            get_value = driver.find_element_by_xpath(location_element).text
+            assertion_results = false_str_true(get_value)
+            return assertion_results
+
+        elif positioning_mode == self.location_css:
+            get_value = driver.find_element_by_css_selector(location_element).text
+            assertion_results = false_str_true(get_value)
+            return assertion_results
+
+        elif positioning_mode == self.location_css:
+            get_value = driver.find_element_by_class_name(location_element).text
+            assertion_results = false_str_true(get_value)
+            return assertion_results
+
+        elif positioning_mode == self.attribute_id:
+            attribute_value = driver.find_element_by_id(location_element)
+            get_value = attribute_value.get_attribute('value')
+            assertion_results = false_str_true(get_value)
+            return assertion_results
+
+        elif positioning_mode == self.attribute_name:
+            attribute_value = driver.find_element_by_id(location_element)
+            get_value = attribute_value.get_attribute('value')
+            assertion_results = false_str_true(get_value)
+            return assertion_results
+
+        else:
+            pass
+
+    def find_lens(self, driver, positioning_mode, location_element, input_content):
+        assertion_results_T = 'True'
+        assertion_results_F = 'False'
+        input_content = int(input_content)
+
+        if positioning_mode == self.location_id:
+            attribute_value = driver.find_element_by_id(location_element)
+            get_value = attribute_value.get_attribute('value')
+            if len(get_value) == input_content:
+                print('实际长度', str(len(get_value)))
+                print('预期长度', str(input_content))
+                return assertion_results_T
+            else:
+                driver.quit()
+                return assertion_results_F
+
+        elif positioning_mode == self.location_name:
+            attribute_value = driver.find_element_by_id(location_element)
+            get_value = attribute_value.get_attribute('value')
+            if len(get_value) == input_content:
+                print('实际长度', str(len(get_value)))
+                print('预期长度', str(input_content))
+                return assertion_results_T
+            else:
+                driver.quit()
+                return assertion_results_F
+
+        elif positioning_mode == self.location_xpath:
+            attribute_value = driver.find_element_by_xpath(location_element)
+            get_value = attribute_value.get_attribute('value')
+            if len(get_value) == input_content:
+                print('实际长度', str(len(get_value)))
+                print('预期长度', str(input_content))
+                return assertion_results_T
+            else:
+                driver.quit()
+                return assertion_results_F
+        else:
+            pass
+
+    # 存值对比
+    def find_save_value(self, driver, positioning_mode, location_element):
+
+        def optext_save(get_value):
+             mkdir_txtva = open('..\\config\\valueStr.txt', 'w')
+             mkdir_txtva.write(get_value)
+             mkdir_txtva.close()
+
+        if positioning_mode == self.location_id:
+            text_value = driver.find_element_by_id(location_element).text
+            optext_save(text_value)
+            print("已保存值" + str(text_value))
+
+        elif positioning_mode == self.location_name:
+            text_value = driver.find_element_by_name(location_element).text
+            optext_save(text_value)
+            print("已保存值" + str(text_value))
+
+        elif positioning_mode == self.location_xpath:
+            text_value = driver.find_element_by_xpath(location_element).text
+            optext_save(text_value)
+            print("已保存值" + str(text_value))
+
+        elif positioning_mode == self.attribute_id:
+            attribute_value = driver.find_element_by_id(location_element)
+            get_value = attribute_value.get_attribute('value')
+            optext_save(get_value)
+            print("已保存值" + str(get_value))
+
+        elif positioning_mode == self.attribute_name:
+            attribute_value = driver.find_element_by_name(location_element)
+            get_value = attribute_value.get_attribute('value')
+            optext_save(get_value)
+            print("已保存值" + str(get_value))
+
+        elif positioning_mode == self.attribute_xpath:
+            attribute_value = driver.find_element_by_xpath(location_element)
+            get_value = attribute_value.get_attribute('value')
+            optext_save(get_value)
+            print("已保存值" + str(get_value))
+
+        else:
+            pass
     #  positioning_mode配置文件项  input_content sql语句
     # def _oracle_sql(self,positioning_mode,input_content):
     #

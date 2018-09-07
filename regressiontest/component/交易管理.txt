@@ -1,0 +1,119 @@
+*** Settings ***
+Library           ../python/testweb.py
+Resource          login_url.robot
+
+*** Test Cases ***
+交易查询--根据交易时间查询当月数据显示订单号，门店名称，交易时间，交易场景，支付品牌，交易金额，状态
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    TransQueryingtradingdataforthemonth.xls
+    shouldContain    ${shi}    ${yu}
+
+交易查询--交易订单--订单号点击展示相应的字段
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    TaskTransactionqueriesalldisplayfields.xls
+    shouldContain    ${shi}    ${yu}
+
+交易查询--交易订单--退款订单号详情展示所有的字段
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    TaskQueryrefundorderdisplayfield.xls
+    shouldContain    ${shi}    ${yu}
+
+交易查询--交易订单--交易导出成功
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    TaskExportingtransactiondatasuccessfully.xls
+    shouldContain    ${shi}    ${yu}
+
+交易查询--发起退款--订单号大于30位给出提示
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    TaskInitiaterefundenquiryordernumber.xls
+    shouldContain    ${shi}    ${yu}
+
+交易查询--发起退款--输入不存在的订单号给出提示
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    TaskIEnterthewrongordernumberquerytogiveahint.xls
+    shouldContain    ${shi}    ${yu}
+
+交易管理--退款查询--输入不存在的订单号给出提示
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    Giveanindicationoftheincorrectordernumber.xls
+    shouldContain    ${shi}    ${yu}
+
+交易管理--退款查询--不输入订单号点击查询提示
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    Themerchantdoesnotentertheordernumberquerytogiveahint.xls
+    shouldContain    ${shi}    ${yu}
+
+交易管理--退款查询--输入超过30位的字符给出提示
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    Themerchantordernumberisinputtomorethan30bitsgivingahint.xls
+    shouldContain    ${shi}    ${yu}
+
+交易管理--在线收款--创建订单--生成url成功
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CreateordergenerationpaymentURL.xls
+    shouldContain    ${shi}    ${yu}
+
+交易管理--在线收款--创建订单--不选择门店给出提示
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    Donotfillinstorestocreateorders,givehints.xls
+    shouldContain    ${shi}    ${yu}
+
+交易管理--在线收款--创建订单--输入不存在的门店给出提示
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    Giveahintinthestorewheretheinputdoesnotexist.xls
+    shouldContain    ${shi}    ${yu}
+
+交易管理--在线收款--创建订单--交易金额为空给出提示
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    Createapromptwithoutinput.xls
+    shouldContain    ${shi}    ${yu}
+
+交易管理--在线收款--创建订单--交易金额为0给出提示
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    Createanordertransactionwithasumof0givinghints.xls
+    shouldContain    ${shi}    ${yu}
+
+交易管理--在线收款--创建订单--商品名称为空给出提示
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    Createordernotfillintradenamecannotbecreated.xls
+    shouldContain    ${shi}    ${yu}
+
+交易管理--在线收款--创建订单--不填写收款说明创建成功
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    Donotfillininstructionstocreateordersuccessfully.xls
+    shouldContain    ${shi}    ${yu}
+
+交易管理--在线收款--创建订单--订单有效期为0提示只能填0--99
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    Theorderisvalidfor0.xls
+    shouldContain    ${shi}    ${yu}
+
+交易管理--在线收款--创建订单--订单有效期为100提示只能填0--99
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    Theorderisvalidfor100.xls
+    shouldContain    ${shi}    ${yu}
+
+交易管理--在线收款--创建订单--订单有效期为字母给出提示
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    Thevalidityperiodoftheorderisletterprompt.xls
+    shouldContain    ${shi}    ${yu}
+
+交易管理--交易统计--统计维度为机构查询出数据
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    Dimensionsofstatisticalinstitutions.xls
+    shouldContain    ${shi}    ${yu}
+
+交易管理--交易统计--统计维度为商户查询出数据
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    Statisticalmerchantdimension.xls
+    shouldContain    ${shi}    ${yu}
+
+交易管理--交易统计--统计维度为门店查询出数据
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    Statisticalmerchantdimension.xls
+    shouldContain    ${shi}    ${yu}
+
+交易管理--交易统计--统计维度为集团查询出数据
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    Statisticalgroupdimension.xls
+    shouldContain    ${shi}    ${yu}

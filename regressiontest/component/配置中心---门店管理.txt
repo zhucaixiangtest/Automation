@@ -1,0 +1,599 @@
+*** Settings ***
+Library           ../python/testweb.py
+Resource          login_url.robot
+
+*** Test Cases ***
+商户管理--创建门店--门店代码超过32位给出提示
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFThestorecodeismorethan32bitsgivinghints.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建门店--门店代码已存在给出提示
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFEntertheexistingstorecodetogivehints.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建门店--输入门店代码为15位（数字，字母和英文符号）创建成功
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFStorecodedigitalphabetsymbol.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建门店--不输入门店代码创建成功自动生成
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFNoentrystorecodecreationsuccess.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建门店--门店代码输入中文给出提示
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFStoresenterChinesetogivehints.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建门店--不输入门店名称给出提示
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFGiveahintwithoutenteringthenameofthestore.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建门店--门店名称超过50个字符给出提示
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFThestorenameismorethan50charactersgivinghints.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建门店--门店名称为50个字符创建成功
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFThenameofastoreisequalto50characters.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建门店--门店英文名称最多只能输入22位字符
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFStoreEnglishnameinput24charactersinfactonly22.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建门店--门店英文名称为22位字符创建成功
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFStoreEnglishnameis22charactercreationsuccess.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建门店--筛选不存在的国家给出提示
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFCountriesthatdonotexistgivehints.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建门店--不选择国家地区、城市、地址保存给出提示填写
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFNoinputcountrytocreateastoretogivehints.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建门店--地址长度输入大于50给出提示
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFTheaddressisgreaterthan50charactersgivingahint..xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建门店--行业类别不填写提示填写.输入不存在的类别提示不存在
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFDonotfillintheindustrycategoryorfillindonotgiveanyhints.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建门店--创建门店代码已在审核中，提示门店已在审核
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFThisindicatesthatthemerchantcodeisalreadyintheauditprocess.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建门店-输入门店代码提交审核成功
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFInputmerchantcodesubmittedsuccessfully.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建门店-不输入门店代码提交审核成功
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFNOInputmerchantcodesubmittedsuccessfully.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建门店-输入地址长度为50创建门店成功
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFTheaddresslengthis50creatingsuccess.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建门店-输入地址长度为50提交审核成功
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFThelengthoftheaddressis50forsuccessfulaudit.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建门店--输入不存在的交易币种给出提示
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFGiveahintoftradingcurrencythatdoesnotexist.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建门店--不输入交易币保存给出提示
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFDonotentertransactionskeepmoneygivehints.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建门店--开通支付宝不输入pid,输入框下显示'请输入支付宝PID
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFAlipaydoesnotenterPIDtogivehints.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建门店--开通支付宝输入不存在的pid给出提示
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFThePIDthatdoesnotexistAlipayinputgivesahint.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建门店--开通支付宝不填写费率给出提示
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFDonotfillintheAlipayratetogiveahint.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建门店--开通支付宝费率填写0展示为0.0000%并且创建成功
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFAlipayratesfillin0display0.0000%.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建门店--开通支付宝费率填写0展示为0.0000%并且提交审核成功
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFAlipayratefill0submitauditsuccess.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建门店--开通支付宝费率填写大于10给出提示不能超过10%
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFAlipayratesfillinmorethan10hints.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建门店--开通支付宝费率填写10%创建成功展示10.0000%
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFAlipayratesfill10tocreatesuccess.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建门店--开通支付宝费率填写10展示为10.0000%并且提交审核成功
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFAlipayratefill0submitauditsuccess.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建门店--开通支付宝费率填写0.011创建成功展示0.0110%
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFAlipayratesfill0.011tocreatesuccess.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建门店--开通支付宝费率填写0.011提交审核成功
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFAlipayratefill0.011submitauditsuccess.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建门店--开通支付宝费率填写0.0001不可再输入字符-创建成功展示费率0.0001%
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFAlipayrateistoolongtofillinandfillin0.0001.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建门店--开通支付宝费率填写0.0001不可再输入字符--展示费率0.0001%--提交审核成功
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFAlipayrateistoolongtofillinandfillin0.0001shenghe.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建门店--开通支付宝费率填写2.475创建成功--展示费率2.4750%
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFAlipayrateistoolongtofillinandfillin2.475.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建门店--开通支付宝费率填写2.475提交审核成功
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFAlipayrateistoolongtofillinandfillin2.475shenghe.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建门店--开通支付宝费率填写0.9999创建成功展示0.9999%
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFAlipayratesfill0.9999tocreatesuccess.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建门店--开通支付宝费率填写0.9999创建成功展示0.9999%提交审核成功
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFAlipayratefill0.9999submitauditsuccessshenhe.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建门店--开通支付宝费率填写2.475,不填写门店代码，子商户号超过规定字符提示
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFThesubmerchantnumberexceedsthespecifiedcharactertogiveahint.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建门店--门店代码不填写-开通支付宝-子商户号填写25位字母数字组合创建成功
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFThe25characterissuccessfulwithoutfillinginthemerchantcode.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建门店--开通支付宝-不填写门店代码，支付宝子商户号为特殊字符给出提示
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFSubmerchantnumberfillinspecialcharacters.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建门店--不输入门店代码-支付宝输入子商户号为数字和字母不超过规定长度
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFDonotentermerchantcodeshopowner'sshopnumber.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建门店--不输入门店代码-输入支付宝子商户号为数字和字母不超过规定长度提交审核成功
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFDonotentermerchantcodeshopowner'sshopnumbershenghe.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建门店--输入门店代码--不输入支付宝子商户号创建门店成功
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFEnterstorecodedoesnotimportsubbusinessnumbertocreatesuccess.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建门店--输入门店代码--不输入支付宝子商户号创建提交审核成功
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFEnterstorecodedoesnotimportsubbusinessnumbertocreatesuccessshenhe.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建门店--开通微信业务-不填写微信商户号给出提示
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFNoinputtoWeChatmerchantnumberisgiven.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建门店--开通微信业务-输入不存在的微信商户号给出提示
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFTheWeChatmerchantnumberwhichdoesnotexistgivesahin.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建门店--开通微信业务-创建门店成功
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFOpeningWeChatbusinesstocreatesuccess.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建门店--开通微信业务-创建门店提交审核成功
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFOpeningWeChatbusinesstocreateshenhesuccess.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建门店--开通微信业务-不填写费率给出提示
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFDonotfillintheWeChatratetogiveahint.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建门店--开通微信业务-费率填写0创建门店成功展示0.0000%
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFWeChatratefill0givesahint.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建门店--开通微信业务-费率填写0创建门店成功展示0.0000%提交审核成功
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFWeChatratefill0givesahintshenhe.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建门店--开通微信业务-费率填写10.01给出提示费率不能大于10
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFWeChatratefill10.01givesahint.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建门店--开通微信业务-费率填写0.0001创建成功展示0.0001%
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFWeChatratefill0.0001givesahint.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建门店--开通微信业务-费率填写0.0001提交审核成功
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFWeChatratefill0.0001givesahintshenhe.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建门店--开通微信业务-费率填写2.475创建成功展示2.4750%
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFTherateis2.475showing2.4675.0.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建门店--开通微信业务-费率填写2.475提交审核成功
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFTherateis2.475showing2.4675.0shenhe.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建门店--开通微信业务-费率填写0.9999创建成功展示0.9999%
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFTherateis0.9999showing0.9999.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建门店--开通微信业务-费率填写0.9999提交审核成功
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFTherateis0.9999showing0.9999shenhe.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建门店--开通微信业务-不填写微信子商户号给出提示
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFNoinputtoWeChatsubmerchantnumberisgiven.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建门店--开通微信业务-填写 微信子商户号超过长度给出提示
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFWeChatsubbusinessnumberismorethanfilllengthtogivehints.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建门店--开通微信业务-填写 微信子商户号为特殊符号给出提示
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFWeChatsubbusinessnumbertofillinspecialcharacters.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建门店--开通微信香港业务-不填写微信商户号给出提示
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFHongkongWeChatbusinessdoesnotentermerchant'sprompt.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建门店--开通微信香港业务-填写不存在的微信商户号给出提示
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFHongkong'sWeChatbusinessquerydoesnotexistinthemerchant'sprompt.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建门店--开通微信香港业务-不填写费率给出提示
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFHongkongWeChatbusinessdoesnotfillinatestogivehints.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建门店--开通微信香港业务-费率填写为0创建成功展示0.0000% \ -------------9.3 17.46
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFTheHongkongWeChatbusinessrateis0anddisplayed.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建门店--开通微信香港业务-费率填写为0提交审核成功
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFTheHongkongWeChatbusinessrateis0anddisplayedshenhe.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建门店--开通微信香港业务-费率填写填写11提示不能大于10
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFHongkongWeChatbusinessratetfillmorethan10givesahint.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建门店--开通微信香港业务-费率输入交易费率为0.0111创建成功展示正确
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFTheHongkongWeChatbusinessrateis0.0111anddisplayed.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建门店--开通微信香港业务-费率输入交易费率为0.0111提交审核成功
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFTheHongkongWeChatbusinessrateis0.0111anddisplayedshenhe.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建门店--开通微信香港业务-费率输入交易费率为2.475创建成功展示正确
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFTheHongkongWeChatbusinessrateis2.4750anddisplayed.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建门店--开通微信香港业务-费率输入交易费率为2.475提交审核成功
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFTheHongkongWeChatbusinessrateis2.475anddisplayedshenhe.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建门店--开通微信香港业务-费率输入交易费率为2.9999创建成功展示正确
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFTheHongkongWeChatbusinessrateis2.9999anddisplayed.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建门店--开通微信香港业务-费率输入交易费率为2.9999提交审核成功
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFTheHongkongWeChatbusinessrateis2.9999anddisplayedshenhe.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建门店--开通微信香港业务-开户名称大于50字符给出提示
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFHongkongWeChatbusinessaccountnamegreaterthan50prompt.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建门店--开通微信香港业务-开户名称为50创建成功
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFHongkongWeChatbusinessaccountnameisequalto50success.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建门店--开通微信香港业务-开户名称为50提交审核成功
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFHongkongWeChatbusinessaccountnameisequalto50successshenhe.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建门店--开通微信香港业务-开户名称小于50位创建成功
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFHongkongWeChatbusinessaccountnameisequaltoless50success.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建门店--开通微信香港业务-开户名称小于50提交审核成功
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFHongkongWeChatbusinessaccountnameisequaltoless50successshenhe.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建门店--开通微信香港业务-开户银行超过50字符给出提示
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFHongkongWeChatbusinessaccountbankismorethan50charactersprompt.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建门店--开通微信香港业务-开户银行为50位数字创建成功
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFHongkongWeChatbusinessaccountbankhas50figures.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建门店--开通微信香港业务-开户银行为50位字母创建成功
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFHongkongWeChatbusinessaccountbankhas50Letter.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建门店--开通微信香港业务-开户银行为50位英文符号创建成功
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFHongkongWeChatbusinessaccountbankhas50Englishsymbols.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建门店--开通微信香港业务-开户银行为50位字符串提交审核成功~~~~~~~~~~~~~~~~~~~
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFHongkongWeChatbusinessaccountbankhas50strshenhe.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建门店--开通微信香港业务-开户银行小于50长度
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFHongkongWeChatbusinessaccountbankhas50strshenhe.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建门店--开通微信香港业务-开户银行小于50长度创建成功
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFHongkongWeChatbusinessaccountbankhasless50str.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建门店--开通微信香港业务-开户银行小于50长度审核成功
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFHongkongWeChatbusinessaccountbankhasless50strshenhe.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建门店--开通微信香港业务--开户银行编号输入过长给出提示
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFHongkongGiveanindicationofthelongbanknumber.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建门店--开通微信香港业务--开户银行编号为50位创建成功
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFHongkongEnter50banknumbertocreatesuccess.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建门店--开通微信香港业务--开户银行编号为50提交审核成功
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFHongkongEnter50banknumbertocreatesuccessshenhe.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建门店--开通微信香港业务--开户银行编号为中文给出提示输入格式
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFHongkongBanknumberinputinChinesegivehint.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建门店--开通微信香港业务--开户银行编号输入数字、英文、英文符号创建成功
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFHongkongBanknumbersentermixedstringstocreateyoursuccess.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建门店--开通微信香港业务--开户银行编号输入数字、英文、英文符号提交审核成功
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFHongkongBanknumberenteredmixedstringchecksuccessfully.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建门店--开通微信香港业务--银行账号超过规定32长度给出输入格式提示
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFHongkongBankaccountistoolongtogivahint.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建门店--开通微信香港业务--银行账号为32位数字创建门店成功
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFHongkong32figuresforbankaccountswerecreatedsuccessfully.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建门店--开通微信香港业务--银行账号为32位字母创建门店成功
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFHongkong32stringforbankaccountswerecreatedsuccessfully.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建门店--开通微信香港业务--银行账号为32位英文符号创建门店成功
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFHongkong32Englishsymbolsforbankaccountswerecreatedsuccessfully.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建门店--开通微信香港业务--银行账号为32位包含数字字母字符提交审核成功
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFHongkong32symbolsforbankaccountswerecreatedshenhesuccessfully.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建门店--开通微信香港业务--银行账号输入中文给出输入格式错误提示
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFHongkong32Chinessymbolsforbankaccountswerecreatedsuccessfully.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建门店--开通微信香港业务--银行账号输入为数字，字母，和英文符号32位创建门店成功~~~~~~~~~~~~
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFHongkongBankaccountissuccessfullymixedwith32bitstrings.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--门店编辑--不修改任何信息编辑提示无任何编辑
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFDonotmodifyanyinformationtoclickSavetips.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--门店编辑--编辑门店信息提示编辑成功
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFStoremodificationinformationsavedsuccessfully.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--门店编辑--编辑门店信息提交审核成功
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFStorechangessubmittedtoauditsuccess.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--门店编辑--取消勾选开通的业务再次编辑勾选提示填写信息
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFCancelthebusinessandcheckagain.Fillintheinformation.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--门店编辑--取消勾选开通的业务再变更勾选其他的渠道更新门店成功~~~~~~
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFCancelbusinesschangebusinessupdatestoresuccess.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建门店--渠道标识依次展示
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFChannellogodisplayinturn.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建门店--选择不同的行业，微信支付宝渠道默认展示的行业类别不一致
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFDefaultchannelscorrespondingtoindustrycategories.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建门店--选择行业展示英文信息正确
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFCheckthecorrectdatainsearchitems.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建门店--开通所有的渠道业务查看门店业务排序正确
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFCheckandopenallchannelsforeditingandsortingdisplay.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建门店--门店开通渠道（ALP，UPI），检查渠道的默认排序
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFStoresopenchannelsALpUPIcheckthedefaultsortofchannels.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建门店--门店开通渠道（WXP，UPI），检查渠道的默认排序
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFCheckandopenallchannelsforeditingandsortingdisplay.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--授权管理--授权码填写1位数字提示只能输入6位数字
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFAuthorizeinputoffiguresthatdonotconformtoformatandgivehints.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--授权管理--授权码填写字母位数字提示只能输入6位数字
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFTheletterisgivenbytheauthorizationcode.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--授权管理--授权码和确认授权码填写不一致给出提示
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFTheinputoftheauthorizationcodeisinconsistentgivinghints.xls
+    shouldContain    ${shi}    ${yu}
+
+门店管理--界面下拉框--根据机构查询出门店
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFInquiriesbyagencies.xls
+    shouldContain    ${shi}    ${yu}
+
+门店管理--界面下拉框--根据集团查询出门店
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFInquirethestoreaccordingtothegroup.xls
+    shouldContain    ${shi}    ${yu}
+
+门店管理--界面下拉框--根据商户查询出门店
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFInquiringstoresaccordingtomerchantcode.xls
+    shouldContain    ${shi}    ${yu}
+
+门店管理--界面下拉框--根据门店代码查询
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFStoreenquiriesaccordingtostorecode.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理-新增门店-驳回审核成功
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    Createastoretorejectsuccess.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建门店--门店导出成功
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    Exportstoresuccess.xls
+    shouldContain    ${shi}    ${yu}

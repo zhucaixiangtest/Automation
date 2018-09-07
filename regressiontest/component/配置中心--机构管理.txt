@@ -1,0 +1,94 @@
+﻿*** Settings ***
+Library           ../python/testweb.py
+Resource          login_url.robot
+
+*** Test Cases ***
+机构管理--机构查询模糊检查合翻页
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFInstitutionalQueryALLA.xls
+    shouldContain    ${shi}    ${yu}
+
+机构管理--机构查询不存在的机构号
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFNumberOfQueriesThatdoNotExist.xls
+    shouldContain    ${shi}    ${yu}
+
+机构管理--创建机构--不输入机构号，其他正常输入
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFCreateInsLegalinputcheck.xls
+    shouldContain    ${shi}    ${yu}
+
+机构管理--创建机构--输入小于8位的机构号给出提示
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFCreateInsLessThan8PlaceNumber.xls
+    shouldContain    ${shi}    ${yu}
+
+机构管理--创建机构--创建成功机构号8位数字组合
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFCreateaSuccessfulOrganization.xls
+    shouldContain    ${shi}    ${yu}
+
+机构管理--创建机构--机构号8位字母和特殊符号组合给出错误提示
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFCreateInsspecialSymbol.xls
+    shouldContain    ${shi}    ${yu}
+
+机构管理--创建机构--机构号已存在
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFCreateInsalreadyExists.xls
+    shouldContain    ${shi}    ${yu}
+
+机构管理--创建机构--不输入机构名称
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFCreateInsNameNotEntered.xls
+    shouldContain    ${shi}    ${yu}
+
+机构管理--创建机构--创建已存在的机构名称
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFCreateaSuccessfulOrganizationNameAlreadyExists.xls
+    shouldContain    ${shi}    ${yu}
+
+机构管理--创建机构--机构名称大于50位提示错误
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFCreateaInsNameMore50Characters.xls
+    shouldContain    ${shi}    ${yu}
+
+机构管理--创建机构--机构名称输入50创建成功
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFCreateaInsNameIs50Characters.xls
+    shouldContain    ${shi}    ${yu}
+
+机构管理--创建机构--机构名称包含数字\字母\中文\日文和特殊字符且不超过字段长度
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFCreateaInsNameIs50Characterstrs.xls
+    shouldContain    ${shi}    ${yu}
+
+机构管理--创建机构--不输入机构全称给出提示
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFCreateaInsAllNameNoInput.xls
+    shouldContain    ${shi}    ${yu}
+
+机构管理--创建机构--机构全称大于100位给出提示
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFCreateaInsALLNameMore100Characters.xls
+    shouldContain    ${shi}    ${yu}
+
+机构管理--创建机构--机构全称包含数字\字母\中文\日文和特殊字符且不超过字段长度
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFCreateaInsALLNameIs50Characterstrs.xls
+    shouldContain    ${shi}    ${yu}
+
+机构管理--创建机构--机构全称为100位创建成功
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFCreateaInsALLNameIs100okCharacterstrs.xls
+    shouldContain    ${shi}    ${yu}
+
+机构管理--创建机构--创建已存在的机构全称
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFCreateaSuccessfulOrganizationAllNameAlreadyExists.xls
+    shouldContain    ${shi}    ${yu}
+
+机构管理--创建机构--创建机构编辑机构名称/全称/添加角色信息/用户
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFCreateAllInformationOfEditorialInstitution.xls
+    shouldContain    ${shi}    ${yu}

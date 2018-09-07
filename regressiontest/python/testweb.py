@@ -47,15 +47,15 @@ def case_path(case_name):
 
 def case(driver, case_name):
     try:
-        _read_case_path = case_path(case_name)
+        read_case_path = case_path(case_name)
         actual_results = 'False'
         expected_results = 'True'
 
         if case_name:
-            print ('**********************CASE START FRO:', _read_case_path)
+            print ('**********************CASE START FRO:', read_case_path)
             print ''
 
-            get_exc_list = read_cases(_read_case_path)
+            get_exc_list = read_cases(read_case_path)
 
             for list_exc in get_exc_list:
 
@@ -79,26 +79,26 @@ def case(driver, case_name):
                                                          output)
 
                 if get_actual_results == 'False':
-                    print("****************************************""CASE END FOR:", _read_case_path)
+                    print("****************************************""CASE END FOR:", read_case_path)
                     return actual_results, expected_results
-            print("****************************************""CASE END FOR:", _read_case_path)
+            print("****************************************""CASE END FOR:", read_case_path)
             return expected_results, expected_results
 
     except Exception as test_web_log:
-        error_log = str(test_web_log)
+        errorlog = str(test_web_log)
         print('未找到页面元素或其他原因')
-        print("具体失败原因:" + error_log)
+        print("具体失败原因:" + errorlog)
         im_save = string_manipulation
         im_save.save_img(driver)
         time.sleep(1)
-        im_save.write_log_txt(error_log)
-        print("已截图并写入日志到error_log文件夹")
+        im_save.write_log_txt(errorlog)
+        print("已截图并写入日志到errorlog文件夹")
         driver.quit()
         print("**************************用例执行失败--具体查看日志抛异常")
         print('')
-        _read_case_path = case_path(case_name)
+        read_case_path = case_path(case_name)
         print("****************************************CASE END FOR:",
-              _read_case_path)
+              read_case_path)
         actual_results = 'False'
         expected_results = 'True'
         return actual_results, expected_results

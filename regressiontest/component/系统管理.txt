@@ -1,0 +1,146 @@
+*** Settings ***
+Library           ../python/testweb.py
+Resource          login_url.robot
+
+*** Test Cases ***
+创建用户-用户名检查-检查文本框格式效验
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    SYSCreatUserNameCheckA.xls
+    shouldContain    ${shi}    ${yu}
+
+创建用户-用户名检查-用户名位数大于4位且小于20位(包含数字和字母)
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    SYSCreatUserNameCheckB.xls
+    shouldContain    ${shi}    ${yu}
+
+创建用户-用户名检查-用户名位数为20位(包含数字和字母)
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    SYSCreatUserNameCheckC.xls
+    shouldContain    ${shi}    ${yu}
+
+创建用户-显示名检查-提示显示名不能为空
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    SYSCreatUsernameDisplayA.xls
+    shouldContain    ${shi}    ${yu}
+
+创建用户-显示名检查-显示名为50位
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    SYSCreatUsernameDisplayB.xls
+    shouldContain    ${shi}    ${yu}
+
+创建用户-显示名检查-提示显示名不能大于50位
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    SYSCreatUsernameDisplayC.xls
+    shouldContain    ${shi}    ${yu}
+
+创建用户-显示名检查-显示名为已存在的
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    SYSCreatUsernameDisplayD.xls
+    shouldContain    ${shi}    ${yu}
+
+创建用户-邮箱检查-邮箱超过71位提示不正确
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    SYSCreatUseEmailCheckC.xls
+    shouldContain    ${shi}    ${yu}
+
+创建用户-邮箱检查-邮箱不超过70位字符包含邮箱可输不同类型字符
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    SYSCreatUseEmailCheckB.xls
+    shouldContain    ${shi}    ${yu}
+
+创建用户-邮箱检查-提示邮箱不能为空
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    SYSCreatUseEmailCheckA.xls
+    shouldContain    ${shi}    ${yu}
+
+创建用户-手机号检查-提示手机号不正确
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    SYSCreatUsePhoneCheckA.xls
+    shouldContain    ${shi}    ${yu}
+
+创建用户-手机号检查-手机号使用汉字、字母、数字、特殊符号
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    SYSCreatUsePhoneCheckB.xls
+    shouldContain    ${shi}    ${yu}
+
+创建用户-邮编检查-不输入邮编创建用户成功
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    SYSCreatUseZipcodeA.xls
+    shouldContain    ${shi}    ${yu}
+
+创建用户-邮编检查-邮编输入字母和数字组合创建用户成功
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    SYSCreatUseZipcodeB.xls
+    shouldContain    ${shi}    ${yu}
+
+创建用户-找不到选择的用户类型代码保存时给出提示
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    SYSCreatUseTypecodeA.xls
+    shouldContain    ${shi}    ${yu}
+
+角色分配-机构用户 -- 机构角色,集团角色,商户角色,门店角色可选
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    SYSRoleassignment_mechanismA.xls
+    shouldContain    ${shi}    ${yu}
+
+角色分配--集团用户 -- 集团角色,商户角色,门店角色可选
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    SYSRoleassignment_groupB.xls
+    shouldContain    ${shi}    ${yu}
+    #这个用例必死无疑，前端有bug，输入集团查询不到数据 \ 其他用户类型都没有问题
+
+角色分配--商户用户 -- 商户角色,门店角色可选
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    SYSRoleassignment_MerchantC.xls
+    shouldContain    ${shi}    ${yu}
+
+角色分配-- 门店用户 -- 门店角色可选
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    SYSRoleassignment_storeD.xls
+    shouldContain    ${shi}    ${yu}
+
+角色分配-- 创建用户-授予权限保存
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    SYSDistributionRoleHaveA.xls
+    shouldContain    ${shi}    ${yu}
+
+角色分配-- 创建用户不选择任何权限-点击保存
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    SYSDistributionRoleNoHaveB.xls
+    shouldContain    ${shi}    ${yu}
+
+重置密码-各种错误断言提示是否正确
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    SYSResetpasswordpromptA.xls
+    shouldContain    ${shi}    ${yu}
+
+重置密码-重置密码成功
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    SYSResetpasswordpromptOKC.xls
+    shouldContain    ${shi}    ${yu}
+
+用户管理查询数据--各查询条件查询到正确数据
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    SYSDataConditionalQueryA.xls
+    shouldContain    ${shi}    ${yu}
+    #这个用例中，查询集团类型的用户被注释掉了，因为前端目前有bug，不能输入查询
+
+角色管理--没有对应的角色权限不能创建对应没有的角色
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    SYSCreateDifferentRoles.xls
+    shouldContain    ${shi}    ${yu}
+
+角色管理--创建角色--角色名称检查
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    SYSCreateRoleNameCheckA.xls
+    shouldContain    ${shi}    ${yu}
+
+角色管理--创建角色--不选择角色类型--给出提示
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    SYSCreateRoleTypeCheckB.xls
+    shouldContain    ${shi}    ${yu}
+
+角色管理--创建角色--填写描述
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    SYSCreateRoleDescribeCheckC.xls
+    shouldContain    ${shi}    ${yu}

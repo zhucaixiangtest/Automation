@@ -1,0 +1,229 @@
+*** Settings ***
+Library           ../python/testweb.py
+Resource          login_url.robot
+
+*** Test Cases ***
+商户管理--翻页模糊查询数据正确
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFMerChantsQueryFuzzyQueryOfPageTurning.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--以机构和集团为筛选条件查询商户
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFEnquiriesfrominstitutionsandgroups.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--选择机构展示机构所有集团，选择集团内展示集团下所有的商户
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFCorrespondingSelectionDisplaysAllSubitems.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--根据集团查询出商户
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFInquiresthemerchantaccordingtothegroup.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--根据商户号查询出商户
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFInquiresTheMerchantAccordingToTheMerchantNumber.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--根据集团号和商户号查询出商户
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFAccordingToGroupAndMerchantCheckingMerchants.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--根据机构号和商户号查询出商户
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFEnquiriesFromInstitutionsAndBusinesses.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--输入不存在的机构提示没有相关信息
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFTheMechanismWhereInputDoesNotExistGivesAhint.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--选择机构输入不存在此机构的集团给出提示没有相关信息
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFSelectorganizationstoentergroupsthatdonotexist.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--选择集团输入不存在此集团的商户给出不存在的提示
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFSelectagenciesToEnterMerchantsWhoDoNotExist.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建商户--不选择集团创建商户失败提示选择集团
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFMerchantsDoNotChooseGroups.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建商户--创建成功
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFCreateBusinessSuccess.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建商户--输入不存在的集团提示没有找到信息
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFCreateAGroupThatMerChantsDoNotImport.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建商户--创建用户关联风控方案成功
+    log    这个功能去掉了
+    #CONFCreatebusinessassociatedwindcontrolplanSuccessfully.xls
+
+商户管理--创建商户--不填写商户号创建商户成功
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFCreatebusinessautomaticallygeneratemerchantnumber.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建商户--商户号填写超过32个字符给出提示
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFFillintheLongCodeOfMerchantCodeAndGiveHints.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建商户--商户号为数字和字母组合小于32个字符创建成功
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFMerchantNumbersAreNumbersAndAlphabetCombinations.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建商户--商户号为数字和字母组合等于32个字符创建成功
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFmerchantnumberis32charactersinalphabeticcombination.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建商户--商户号填写已存在的
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFCreateamerchant'sexistingmerchantname.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建商户--商户名称不填给出提示
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFMerchantnameisnotFilledOutGivingHints.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建商户--商户名称超过50给出提示
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFThemerchantnameismorethan50givinghint.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建商户--商户名称等于50位创建成功
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFmerchantnameis50andthelengthiscreatedSuccessfully.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建商户--商户名称为已存在创建成功
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFMerchantnamealreadyexistsandcreatedsuccessfully.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建商户--不输入商户英文名提示无法创建
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFNoinputofmerchantEnglishnamecreation.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建商户--商户名称小于50位创建成功
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFmerchantnameisxiaoyu50andthelengthiscreatedSuccessfully.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建商户--商户英文名大于50位给出提示
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFMerchantEnglishnameisgreaterthan50bits.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建商户--商户英文名等于50位创建成功
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFMerchantEnglishnameisgreaterdengyu50bits.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建商户--输入商户英文名为数字、字符和中文且不超过规定字段长度创建成功
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFMerchantEnglishmixedstring.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建商户--不输入姓名无法创建
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFGivepromptwithoutenteringname.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建商户--姓名填写大于50位给出提示
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFPromptnameshouldnotexceed50characters.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建商户--姓名填写等于50位创建成功
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFThenameisequao50bitstocreatesuccess.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建商户--创建其他集团已有的商户代码创建成功
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFCreateexistingbusinessnumbersforothergroups.xls
+    shouldContain    ${shi}    ${yu}
+    #需要注意这里存在前端清数据，如果用例死在创建完成之后，那么再次运行手动删除下dl000000集团下
+
+商户管理--创建商户--姓名输入混合字符串创建成功
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFNamenputmixedstringcreationsuccess.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建商户--不填写邮箱给出提示
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFDonotfillinthemailboxtogivehints.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建商户--超过邮箱规定长度50位给出提示
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFMorethan50charactersaregiveninthemailbox.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建商户--等于邮箱规定长度50位创建成功
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFThemailboxisilledwith50characters..xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建商户--输入错误的邮箱格式给出提示
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFEnterthewrongmailboxformattogivehints.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建商户--不输入联系电话给出提示
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFCreateahintwithoutenteringthecontactphone..xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建商户--手机电话输入特殊字符给出错误提示
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFPhonephoneinputspecialcharactersgivewrongprompts.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建商户--手机电话输入超过规定的50位给出提示
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFMobilephonetransmissionexceedsthespecifiedlengthtogivehints.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建商户--手机电话输入50位数字创建成功
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFMobilephoneinput50digitscreatesuccess.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建商户--电话输入固定电话格式（联系电话x-x..x-x..x-x..x-xx）创建成功
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFTelephoneinputfixedtelephoneformat.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建商户--手机电话输入小于50个数字
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFTelephoneinputislessthan50digits.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--创建商户--创建成功进行编辑（所有可编辑的编辑成功）
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFEditalleditorsaftercreatingbusiness.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--终端展示收款码
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    TaskVerifyterminalcollectioncode.xls
+    shouldContain    ${shi}    ${yu}

@@ -24,5 +24,9 @@ def username_add(input_content):
             elif input_content[2:lens] == 'getStr':
                 input_content = string_manipulation.read_txt()
                 return input_content
+
+            elif input_content[2:lens] == 'getSave':
+                input_content = string_manipulation.get_save_value()
+                return input_content
         else:
             return input_content

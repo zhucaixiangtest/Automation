@@ -1,0 +1,54 @@
+*** Settings ***
+Library           ../python/testweb.py
+Resource          login_url.robot
+
+*** Test Cases ***
+商户管理--添加终端--填写不存在的门店名称或代码给出提示无数据以及无法新增
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFAddastorewhereterminalinputdoesnotexistandgivehints.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--添加终端--添加终端输入唯一编号保存成功
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFAddterminaltoillinterminalnumberandaddsuccessfully.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--添加终端--添加终端--终端编号填写带字母给出提示
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFerminalnumberinputpromptwithletter.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--添加终端--添加终端--终端编号填写大于8位输入不了
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFTheterminalnumberinputisgreaterthan8bitstogiveahint.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--添加终端--添加终端--同一个门店填写多个相同的终端编号给出提示
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFDuplicatenumberofsamestoreterminalnumber.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--添加终端--输入大于200数据给出提示不能大于200
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFThenumberofterminalsexceeds200givesahint.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--添加终端--终端数量为0不能保存
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFerminalnumber0cannotbesaved.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--添加终端--终端数量为空提示终端数不能为空
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFAddterminaldoesnotfillinterminalnumberHintcannotbeempty.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--添加终端--终端备注填写大于200个字符给出提示
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFThenotesarefilledwithmorethan200characters.xls
+    shouldContain    ${shi}    ${yu}
+
+商户管理--添加终端--不输入终端备注添加终端成功
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFNoinputterminalremarksaddedsuccessfully.xls
+    shouldContain    ${shi}    ${yu}

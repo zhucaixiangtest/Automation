@@ -71,6 +71,10 @@ class JudgeCase(UnderKey):
 
                 Database().db_mongodb(positioning_mode, location_element, input_content)
 
+            elif operation_method == self.basics_str:
+                actual_results = self.find_str(driver, positioning_mode, location_element)
+                return actual_results
+
             #  elif operation_method == self.basics_oracle:
             #
             #     self._oracle_sql(positioning_mode,input_content)
@@ -89,6 +93,13 @@ class JudgeCase(UnderKey):
                 input_content = self.get_urls(input_content)
                 driver.get(input_content)
 
+            elif operation_method == self.basics_lens:
+                actual_results = self.find_lens(driver, positioning_mode, location_element, input_content)
+                return actual_results
+
+            elif operation_method == self.basics_save:
+                self.find_save_value(driver, positioning_mode, location_element)
+
             else:
                 pass
 
@@ -98,8 +109,8 @@ class JudgeCase(UnderKey):
     # 继承调用selenium方法
     def case_selenium(self, driver, operation_method, positioning_mode, location_element, input_content, output):
 
-            actual_results = self.selenium_for(driver, operation_method, positioning_mode, location_element,
-                                                  input_content, output)
+            actual_results = self.selenium_for(driver, operation_method, positioning_mode,
+                                               location_element, input_content, output)
             if operation_method == self.basics_case:
                 test = string_manipulation
                 input_content = test.case_file(input_content)

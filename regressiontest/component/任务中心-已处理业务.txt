@@ -1,0 +1,9 @@
+*** Settings ***
+Library           ../python/testweb.py
+Resource          login_url.robot
+
+*** Test Cases ***
+按时间查找展示相应的字段
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    TaskTheprocessedbusinessshowsthecorrectfieldsaccordingtothetime.xls
+    shouldContain    ${shi}    ${yu}

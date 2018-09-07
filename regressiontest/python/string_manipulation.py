@@ -47,11 +47,18 @@ def filter_value(value):
 #     _selenium_pa = os.path.abspath('..')
 #     return _selenium_pa
 
+def get_save_value():
+    open_value = open('..\\config\\valueStr.txt', 'r')
+    txt_f = open_value.readline()
+    open_value.close()
+    return txt_f
+
+
 
 def auto_it_file(file_name):
 
     # selenium_path= selenium_file()
-    paths = '..\\third_tools\\auto_it\\' + file_name
+    paths = '..\\thirdtools\\autoit\\' + file_name
     return paths
 
 
@@ -95,7 +102,7 @@ def pull_file():
 def save_img(driver):
 
     # _save_img_path = _selenium_file()
-    _save_img_path = '..\\error_log\\image\\'
+    _save_img_path = '..\\errorlog\\image\\'
     now_time = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')  # 现在
     now_time = str(now_time).replace(' ', '-')
     now_time = now_time.replace(':', '-')
@@ -104,13 +111,13 @@ def save_img(driver):
     return error_img
 
 
-def write_log_txt(error_log):
+def write_log_txt(errorlog):
     now_time = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     str_time = str(now_time)
     touch_txt = str_time[0:10]
     try:
-        write_text = open('../error_log/log/' + touch_txt + '.txt', 'a')
-        write_text.write(str_time + ':' + ' ' * 5 + error_log + '\n' + "" + '\n')
+        write_text = open('../errorlog/log/' + touch_txt + '.txt', 'a')
+        write_text.write(str_time + ':' + ' ' * 5 + errorlog + '\n' + "" + '\n')
     except IOError:
         print("写入log错误,无此目录")
 
@@ -119,7 +126,3 @@ def write_log_txt(error_log):
 
     finally:
         pass
-
-
-
-

@@ -1,0 +1,9 @@
+*** Settings ***
+Library           ../python/testweb.py
+Resource          login_url.robot
+
+*** Test Cases ***
+任务中心--我提交的任务
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    TaskIsubmittasksbasedontimetoquerydata.xls
+    shouldContain    ${shi}    ${yu}

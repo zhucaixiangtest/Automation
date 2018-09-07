@@ -19,7 +19,7 @@ class BrowserOpen(object):
         if browsers == self.chromes and self.home_http in website:
             options = webdriver.ChromeOptions()
             # path = os.path.abspath("..")
-            file_path = "..\\upload"
+            file_path = "..\\download"
 
             pre_fs = {'profile.default_content_settings.popups': 0,
                       'download.default_directory': file_path}

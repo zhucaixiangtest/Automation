@@ -1,0 +1,69 @@
+*** Settings ***
+Library           ../python/testweb.py
+Resource          login_url.robot
+
+*** Test Cases ***
+集团管理--集团查询--不加查询条件翻页模糊查询字段展示正确
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFGroupMerchantPageQueryData.xls
+    shouldContain    ${shi}    ${yu}
+
+集团管理--集团查询--输入不存在的机构号提示不存在
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFGroupInquiriesDoNotExist.xls
+    shouldContain    ${shi}    ${yu}
+
+集团管理--集团查询--输入机构查询出集团信息
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFInquireGroupInformationAccordingToOrganizationNumber.xls
+    shouldContain    ${shi}    ${yu}
+
+集团管理--集团查询--输入集团号查询集团信息
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFInquireGroupInformationAccordingToGroupNumber.xls
+    shouldContain    ${shi}    ${yu}
+
+集团管理--集团查询--输入机构号再选择集团号展示此机构所有的集团号
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFSelectAgencyDisplayGroupNumber.xls
+    shouldContain    ${shi}    ${yu}
+
+集团管理--集团查询--输入机构号再输入不属于此机构的集团号展示没有相关信息
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFTheGroupThatChoosesNonOrganizationDoesNotShow.xls
+    shouldContain    ${shi}    ${yu}
+
+集团管理--创建集团--不选择机构创建集团给出提示--机构选择支持模糊查询
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFNoOrganizationCreationGroupToGiveHints.xls
+    shouldContain    ${shi}    ${yu}
+
+集团管理--创建集团--机构输入不存在的机构给出提示没有找到相关信息
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFAgenciesThatDoNotHaveInputGiveHintsThatNoRelevantInformationIsFound.xls
+    shouldContain    ${shi}    ${yu}
+
+集团管理--创建集团--选择机构不输入机构名称保存按钮置灰
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFCreateGroupNotEnterGroup.xls
+    shouldContain    ${shi}    ${yu}
+
+集团管理--创建集团--选择机构-集团名称输入超长给出提示，保存按钮置灰
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFSelectTheNameOfTheInstitutionalGroupForSuperLongPrompts.xls
+    shouldContain    ${shi}    ${yu}
+
+集团管理--创建集团--选择机构-集团名称为50长度创建成功
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFGroupSuccess.xls
+    shouldContain    ${shi}    ${yu}
+
+集团管理--创建集团--选择机构--集团不超过字段长度（可以是数字，字母和特殊字符）--创建成功
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFGroupNameIsStringCreationSuccess.xls
+    shouldContain    ${shi}    ${yu}
+
+集团管理--创建集团--编辑集团提示成功
+    ${driver}    opens    ${browser}    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFCreateAndEditGroupSuccess.xls
+    shouldContain    ${shi}    ${yu}

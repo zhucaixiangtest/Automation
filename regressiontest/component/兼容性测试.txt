@@ -1,0 +1,14 @@
+*** Settings ***
+Library           ../python/testweb.py
+Resource          login_url.robot
+
+*** Test Cases ***
+谷歌浏览器
+    ${driver}    opens    Chrome    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFStorechangessubmittedtoauditsuccess.xls
+    shouldContain    ${shi}    ${yu}
+
+ie11浏览器
+    ${driver}    opens    Ie    ${testEveronet}
+    ${yu}    ${shi}    case    ${driver}    CONFStorechangessubmittedtoauditsuccess.xls
+    shouldContain    ${shi}    ${yu}

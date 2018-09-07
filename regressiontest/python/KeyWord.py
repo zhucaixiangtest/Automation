@@ -35,11 +35,19 @@ class BasicsKey:
         self.basics_clear = 'clear'
         self.basics_time = 'time'
         self.basics_gets = 'get'
+        self.basics_str = 'find_str'
+        self.basics_lens = 'find_lens'
+        self.basics_save = 'find_save'
 
         self.location_id = 'id'
         self.location_name = 'name'
         self.location_xpath = 'xpath'
         self.location_css = 'css'
+        self.location_classname = 'classname'
+
+        self.attribute_id = 'idv'
+        self.attribute_name = 'namev'
+        self.attribute_xpath = 'xpathv'
 
         self.operation_method = None
         self.positioning_mode = None
