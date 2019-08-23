@@ -1,3 +1,3 @@
 *** Variables ***
-${testEveronet}    https://test.everonet.com/everonet/#/login
+${testEveronet}    
 ${browser}        Chrome
